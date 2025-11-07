@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="banner.png" alt="Django Blog Banner" width="100%">
+  <img src="banner.jpg" alt="Django Blog Banner" width="100%">
 </p>
 
 <h1 align="center"> Django Blog — Dark Pro Theme </h1>
