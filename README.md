@@ -1,9 +1,17 @@
 <p align="center">
-  <img src="banner.png" alt="Django Blog Banner" width="100%">
+  <img src="banner.jpg" alt="Django Blog Banner" width="100%">
 </p>
 
 # Django Blog — Dark Pro Theme
-A Django blog featuring...
+
+A Django blog featuring:
+- Tailwind dark UI with animated cards & pagination
+- Summernote rich text editor (images + YouTube/Vimeo)
+- YouTube preview fallback (no Error 153)
+- Moderated comments
+
+## Quickstart
+
 
 
 # Django Blog — Dark Pro Theme
