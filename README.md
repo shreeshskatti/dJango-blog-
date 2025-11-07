@@ -1,109 +1,70 @@
 <p align="center">
-  <img src="banner.jpg" alt="Django Blog Banner" width="100%">
+  <img src="banner.png" alt="Django Blog Banner" width="100%">
 </p>
 
-# Django Blog — Dark Pro Theme
+<h1 align="center"> Django Blog — Dark Pro Theme </h1>
 
-A Django blog featuring:
-- Tailwind dark UI with animated cards & pagination
-- Summernote rich text editor (images + YouTube/Vimeo)
-- YouTube preview fallback (no Error 153)
-- Moderated comments
+<p align="center">
+  <img src="https://img.shields.io/badge/Made%20with-Django-0C4B33?style=for-the-badge&logo=django&logoColor=white" alt="Made with Django">
+  <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License: MIT">
+  <img src="https://img.shields.io/badge/Maintained-Yes-success?style=for-the-badge" alt="Maintained">
+</p>
 
-## Quickstart
+<p align="center">
+A professional, dark-themed Django blog project featuring modern design, interactive UI, and rich editing experience.
+</p>
 
+---
 
+## ✨ Features
 
-# Django Blog — Dark Pro Theme
+- 🎨 **Tailwind Dark UI** with animated cards & smooth transitions  
+- 📝 **Summernote Rich Text Editor** (supports YouTube/Vimeo embeds)  
+- 💬 **Moderated Comments** system with approval workflow  
+- 🎬 **YouTube video preview fallback** (fixes Error 153 embed issue)  
+- 📄 **Pagination & responsive layouts**  
+- ⚙️ Built using Django Class-Based Views (ListView + DetailView)
 
-A Django blog featuring:
-- Tailwind dark UI with animated cards & pagination
-- Summernote rich text editor (images + YouTube/Vimeo)
-- YouTube preview fallback (no Error 153)
-- Moderated comments
+---
 
-## Quickstart
+## ⚡ Quickstart
 
-```bas
+```bash
+# 1️⃣ Create & activate a virtual environment
 python -m venv venv
-source venv/Scripts/activate   # on Windows Git Bash
+source venv/Scripts/activate   # On Windows Git Bash
+
+# 2️⃣ Install dependencies
 pip install -r requirements.txt
+
+# 3️⃣ Run migrations
 python manage.py migrate
+
+# 4️⃣ Start the development server
 python manage.py runserver
 
 
-
-shree@shreesh MINGW64 ~
-$ ^[[200~cd /c/Users/YourName/Desktop/python
-
-bash: $'\E[200~cd': command not found
-
-shree@shreesh MINGW64 ~
-$ cd c
-bash: cd: c: No such file or directshree@shreesh MINGW64 ~
-$ ^C
-
-shree@shreesh MINGW64 ~
-$ cd /c/Users/shree/Desktop/python
-
-shree@shreesh MINGW64 ~/Desktop/python
-$ ls
-index.py  mysite/
-
-shree@shreesh MINGW64 ~/Desktop/python
-$ git init
-Initialized empty Git repository in C:/Users/shree/Desktop/python/.git/
-
-shree@shreesh MINGW64 ~/Desktop/python (master)
-$ git config user.name "ShreeshSKatti"
-
-shree@shreesh MINGW64 ~/Desktop/python (master)
-$ git config user.email "shreeshkatti212@gmail.com"
-
-shree@shreesh MINGW64 ~/Desktop/python (master)
-$ git status
-On branch master
-
-No commits yet
-
-Untracked files:
-  (use "git add <file>..." to include in what will be committed)
-        index.py
-        mysite/
-
-nothing added to commit but untracked files present (use "git add" to track)
-
-shree@shreesh MINGW64 ~/Desktop/python (master)
-$ cat > .gitignore << 'EOF'
-# Byte-compiled / cache
-__pycache__/
-*.py[cod]
-*$py.class
-
-# Virtual environments
-.venv/
-venv/
-env/
-
-# Django
-*.log
-*.pot
-*.pyc
-db.sqlite3
-media/
-staticfiles/
-*.sqlite3
-
-# IDE / OS
-.vscode/
-.idea/
-.DS_Store
-Thumbs.db
-
-# Environment / secrets
-.env
-.env.*
-!.env.example
-
-# Node / front-end (if any)
-node_modules/
+mysite/
+│
+├── blog/
+│   ├── templates/blog/
+│   │   ├── base.html
+│   │   ├── index.html
+│   │   ├── post_detail.html
+│   │   └── sidebar.html
+│   ├── admin.py
+│   ├── forms.py
+│   ├── models.py
+│   ├── urls.py
+│   └── views.py
+│
+├── mysite/
+│   ├── settings.py
+│   ├── urls.py
+│   └── wsgi.py
+│
+├── db.sqlite3
+├── manage.py
+├── requirements.txt
+├── LICENSE
+└── README.md
