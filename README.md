@@ -1,3 +1,11 @@
+<p align="center">
+  <img src="banner.png" alt="Django Blog Banner" width="100%">
+</p>
+
+# Django Blog — Dark Pro Theme
+A Django blog featuring...
+
+
 # Django Blog — Dark Pro Theme
 
 A Django blog featuring:
@@ -8,7 +16,7 @@ A Django blog featuring:
 
 ## Quickstart
 
-```bash
+```bas
 python -m venv venv
 source venv/Scripts/activate   # on Windows Git Bash
 pip install -r requirements.txt
@@ -19,13 +27,12 @@ python manage.py runserver
 
 shree@shreesh MINGW64 ~
 $ ^[[200~cd /c/Users/YourName/Desktop/python
+
 bash: $'\E[200~cd': command not found
 
 shree@shreesh MINGW64 ~
 $ cd c
-bash: cd: c: No such file or directory
-
-shree@shreesh MINGW64 ~
+bash: cd: c: No such file or directshree@shreesh MINGW64 ~
 $ ^C
 
 shree@shreesh MINGW64 ~
