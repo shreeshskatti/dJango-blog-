@@ -52,30 +52,28 @@ A professional, dark-themed Django blog project featuring modern design, interac
 
 💻 Git Bash — professional CLI workflow on Windows
 
-mysite/
-│
-├── blog/
-│   ├── templates/blog/
-│   │   ├── base.html
-│   │   ├── index.html
-│   │   ├── post_detail.html
-│   │   └── sidebar.html
-│   ├── admin.py
-│   ├── forms.py
-│   ├── models.py
-│   ├── urls.py
-│   └── views.py
-│
-├── mysite/
-│   ├── settings.py
-│   ├── urls.py
-│   └── wsgi.py
-│
-├── db.sqlite3
-├── manage.py
-├── requirements.txt
-├── LICENSE
-└── README.md
+📁 mysite/
+  ├── blog/
+  │ ├── templates/blog/
+  │ │ ├── base.html
+  │ │ ├── index.html
+  │ │ ├── post_detail.html
+  │ │ └── sidebar.html
+  │ ├── admin.py
+  │ ├── forms.py
+  │ ├── models.py
+  │ ├── urls.py
+  │ └── views.py
+  │
+  ├── mysite/
+  │ ├── settings.py
+  │ ├── urls.py
+  │ └── wsgi.py
+  │
+  ├── manage.py
+  ├── requirements.txt
+  ├── LICENSE
+  └── README.md
 
 
 
