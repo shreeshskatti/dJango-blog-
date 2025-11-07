@@ -1,0 +1,20 @@
+<div class="space-y-6">
+  <div class="rounded-xl border border-gray-800 bg-gray-900 p-6 shadow-sm reveal" data-animate>
+    <h2 class="mb-2 text-sm font-semibold uppercase tracking-wide text-gray-400">About</h2>
+    <p class="text-sm text-gray-300">Welcome to our professional blog — clean, readable articles with a dark, modern look.</p>
+  </div>
+
+  {% if recent_posts %}
+  <div class="rounded-xl border border-gray-800 bg-gray-900 p-6 shadow-sm reveal" data-animate>
+    <h2 class="mb-2 text-sm font-semibold uppercase tracking-wide text-gray-400">Recent</h2>
+    <ul class="space-y-2">
+      {% for rp in recent_posts %}
+        <li>
+          <a href="{% url 'blog:post_detail' slug=rp.slug %}" class="hover:underline text-indigo-300">{{ rp.title }}</a>
+          <div class="text-xs text-gray-500">{{ rp.created_on|date:"M d, Y" }}</div>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+</div>

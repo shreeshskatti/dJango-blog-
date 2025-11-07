@@ -1,0 +1,133 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{% block title %}Professional Blog{% endblock title %}</title>
+
+  <!-- Tailwind (CDN) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    html { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; }
+
+    /* Animated aurora gradient (for borders/background accents) */
+    @keyframes aurora {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Scroll reveal */
+    .reveal { opacity: 0; transform: translateY(14px) scale(0.99); filter: saturate(0.9);
+      transition: opacity .6s ease, transform .6s ease, filter .6s ease, box-shadow .3s ease; will-change: transform, opacity, filter; }
+    .reveal.in { opacity: 1; transform: none; filter: saturate(1); }
+
+    /* Card hover: lift + soft glow */
+    .card-hover { transition: transform .35s ease, box-shadow .35s ease, background .35s ease, border-color .35s ease; }
+    .card-hover:hover { transform: translateY(-6px); box-shadow: 0 12px 30px rgba(0,0,0,.45), 0 0 0 1px rgba(255,255,255,0.04) inset; }
+
+    /* Fancy gradient border wrapper (1px) */
+    .gradient-border { background: linear-gradient(120deg, rgba(99,102,241,.35), rgba(236,72,153,.35), rgba(34,211,238,.35)); background-size: 200% 200%; animation: aurora 8s ease infinite; }
+
+    /* Title underline on hover */
+    .link-underline { background-image: linear-gradient(currentColor, currentColor); background-repeat: no-repeat; background-size: 0% 2px; background-position: 0 100%; transition: background-size .35s ease; }
+    .link-underline:hover { background-size: 100% 2px; }
+
+    /* Responsive iframe wrapper (kept in case you allow embeds) */
+    .video-wrap { position: relative; width: 100%; aspect-ratio: 16/9; overflow: hidden; border-radius: 0.75rem; border: 1px solid rgba(255,255,255,0.08); background: #0b0b0b; }
+    .video-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+    /* YouTube thumbnail preview card */
+    .yt-thumb {
+      position: relative; width: 100%; aspect-ratio: 16/9; overflow: hidden;
+      border-radius: 0.75rem; border: 1px solid rgba(255,255,255,0.08);
+      background: #0b0b0b center/cover no-repeat;
+      box-shadow: 0 8px 24px rgba(0,0,0,.35);
+    }
+    .yt-thumb::after { /* subtle vignette */
+      content: "";
+      position: absolute; inset: 0;
+      background: radial-gradient(80% 60% at 50% 50%, rgba(0,0,0,.0), rgba(0,0,0,.35));
+    }
+    .yt-play {
+      position: absolute; inset: 0; display: grid; place-items: center;
+    }
+    .yt-play .btn {
+      width: 68px; height: 68px; border-radius: 9999px;
+      background: radial-gradient(circle at 30% 30%, #fff, #d1d5db);
+      display: grid; place-items: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,.5);
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .yt-play .btn:hover { transform: scale(1.06); box-shadow: 0 14px 36px rgba(0,0,0,.6); }
+    .yt-play .tri {
+      width: 0; height: 0; border-left: 16px solid #ef4444; border-top: 10px solid transparent; border-bottom: 10px solid transparent; margin-left: 4px;
+    }
+  </style>
+
+  {% block extra_head %}{% endblock extra_head %}
+</head>
+<body class="bg-gray-950 text-gray-100">
+  <!-- Header -->
+  <header class="sticky top-0 z-30 border-b border-gray-800 bg-gray-900/80 backdrop-blur">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div class="flex h-16 items-center justify-between">
+        <a href="{% url 'blog:home' %}" class="inline-flex items-center gap-2">
+          <span class="text-lg font-semibold">Professional Blog</span>
+        </a>
+        <form action="{% url 'blog:home' %}" method="get" class="hidden md:block">
+          <input name="q" value="{{ request.GET.q }}" placeholder="Search articles…"
+                 class="w-72 rounded-lg border border-gray-700 bg-gray-800 px-3 py-2 text-sm text-gray-100 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+        </form>
+      </div>
+    </div>
+  </header>
+
+  <!-- Content -->
+  <main class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-8">
+    <div class="grid grid-cols-1 gap-8 lg:grid-cols-12">
+      <section class="lg:col-span-8">
+        {% block content %}{% endblock content %}
+      </section>
+      <aside class="lg:col-span-4">
+        {% block sidebar %}{% include 'blog/sidebar.html' %}{% endblock sidebar %}
+      </aside>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-gray-800 bg-gray-900 py-6">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 text-center text-sm text-gray-400">
+      Built with Django & Tailwind · Dark professional theme
+    </div>
+  </footer>
+
+  {% block extra_body %}{% endblock extra_body %}
+
+  <script>
+    // Reveal on scroll with stagger
+    (function () {
+      const els = Array.from(document.querySelectorAll('[data-animate]'));
+      if (!('IntersectionObserver' in window) || !els.length) return els.forEach(el => el.classList.add('in'));
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            const el = e.target;
+            const idx = els.indexOf(el);
+            el.style.transitionDelay = (idx * 80) + 'ms';
+            el.classList.add('in');
+            io.unobserve(el);
+          }
+        });
+      }, { rootMargin: '0px 0px -10% 0px', threshold: 0.05 });
+      els.forEach(el => io.observe(el));
+    })();
+  </script>
+</body>
+</html>

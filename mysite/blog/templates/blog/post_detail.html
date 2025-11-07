@@ -1,0 +1,167 @@
+{% extends 'blog/base.html' %}
+{% block title %}{{ object.title }} · Professional Blog{% endblock title %}
+
+{% block content %}
+  <!-- Article -->
+  <article class="rounded-2xl border border-gray-800 bg-gray-900/80 p-8 shadow-sm backdrop-blur reveal" data-animate>
+    <header class="mb-6">
+      <h1 class="text-3xl font-bold tracking-tight">{{ object.title }}</h1>
+      <div class="mt-2 text-sm text-gray-400">
+        By {{ object.author }} · {{ object.created_on|date:"M d, Y" }}
+      </div>
+    </header>
+
+    <!-- Post body (Summernote HTML) -->
+    <div id="article-body" class="prose prose-invert max-w-none">
+      <div class="space-y-6">
+        {{ object.content|safe }}
+      </div>
+    </div>
+  </article>
+
+  <!-- Comments list -->
+  <section class="mt-8 space-y-4 reveal" data-animate>
+    <div class="rounded-xl border border-gray-800 bg-gray-900 p-6">
+      <h2 class="text-xl font-semibold mb-4">{{ comments.count }} comment{{ comments.count|pluralize }}</h2>
+
+      {% if comments %}
+        <ul class="space-y-6">
+          {% for c in comments %}
+            <li class="border-b border-gray-800 pb-6 last:border-0 last:pb-0">
+              <div class="flex items-center justify-between text-sm text-gray-400">
+                <div class="font-semibold text-gray-200">{{ c.name }}</div>
+                <div>{{ c.created_on|date:"M d, Y · H:i" }}</div>
+              </div>
+              <p class="mt-2 text-gray-200 leading-7 whitespace-pre-line">{{ c.body }}</p>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p class="text-gray-400">No comments yet. Be the first to share your thoughts.</p>
+      {% endif %}
+    </div>
+  </section>
+
+  <!-- New comment form -->
+  <section class="mt-6 reveal" data-animate>
+    <div class="rounded-xl border border-gray-800 bg-gray-900 p-6">
+      {% if new_comment %}
+        <div class="mb-4 rounded-md border border-green-800 bg-green-900/40 px-4 py-3 text-green-200">
+          ✅ Your comment was submitted and is awaiting moderation.
+        </div>
+      {% endif %}
+
+      <h3 class="text-lg font-semibold mb-3">Leave a comment</h3>
+      <form method="post" class="space-y-4">
+        {% csrf_token %}
+        {{ comment_form.non_field_errors }}
+        <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+          <div>
+            {{ comment_form.name.errors }}
+            {{ comment_form.name }}
+          </div>
+          <div>
+            {{ comment_form.email.errors }}
+            {{ comment_form.email }}
+          </div>
+        </div>
+        <div>
+          {{ comment_form.body.errors }}
+          {{ comment_form.body }}
+        </div>
+        <button type="submit"
+                class="inline-flex items-center gap-2 rounded-md border border-gray-700 bg-gray-800 px-4 py-2 text-sm font-medium text-indigo-300 hover:bg-gray-800 hover:border-gray-600 transition-colors">
+          Submit comment
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Back link -->
+  <div class="mt-6">
+    <a href="{% url 'blog:home' %}"
+       class="inline-flex items-center gap-1 rounded-md border border-gray-700 px-3 py-1.5 text-sm hover:bg-gray-800 transition">← Back to articles</a>
+  </div>
+
+  <!-- Auto-embed/preview logic for YouTube + responsive iframes -->
+  <script>
+    // ---- YouTube helpers ----
+    function ytIdFromUrl(u) {
+      try {
+        const url = new URL(u);
+        // watch?v=VIDEO_ID
+        if (url.hostname.includes('youtube.com') && url.pathname === '/watch') {
+          return url.searchParams.get('v') || '';
+        }
+        // youtu.be/VIDEO_ID
+        if (url.hostname.includes('youtu.be')) {
+          return url.pathname.replace('/', '');
+        }
+        // youtube.com/shorts/VIDEO_ID
+        if (url.hostname.includes('youtube.com') && url.pathname.startsWith('/shorts/')) {
+          return url.pathname.split('/')[2] || '';
+        }
+        // youtube.com/embed/VIDEO_ID
+        if (url.hostname.includes('youtube.com') && url.pathname.startsWith('/embed/')) {
+          return url.pathname.split('/')[2] || '';
+        }
+      } catch (e) {}
+      return '';
+    }
+
+    function makeThumbCard(id, href) {
+      const wrap = document.createElement('a');
+      wrap.href = href;
+      wrap.target = '_blank';
+      wrap.rel = 'noopener';
+      wrap.className = 'yt-thumb block';            // styled in base.html
+      wrap.style.backgroundImage = "url('https://img.youtube.com/vi/" + id + "/hqdefault.jpg')";
+      const overlay = document.createElement('div'); overlay.className = 'yt-play';
+      const btn = document.createElement('div'); btn.className = 'btn';
+      const tri = document.createElement('div'); tri.className = 'tri';
+      btn.appendChild(tri); overlay.appendChild(btn); wrap.appendChild(overlay);
+      return wrap;
+    }
+
+    (function () {
+      const body = document.getElementById('article-body');
+      if (!body) return;
+
+      // 1) Convert plain YouTube links to a thumbnail preview card (opens YouTube)
+      const linkSel = [
+        'a[href*="youtube.com/watch"]',
+        'a[href*="youtu.be/"]',
+        'a[href*="youtube.com/shorts/"]',
+        'a[href*="youtube.com/embed/"]'
+      ].join(',');
+      body.querySelectorAll(linkSel).forEach(a => {
+        const id = ytIdFromUrl(a.href);
+        if (!id) return;
+        const watchUrl = 'https://www.youtube.com/watch?v=' + id;
+        a.replaceWith(makeThumbCard(id, watchUrl));
+      });
+
+      // 2) Replace YouTube iframes (which can show Error 153) with a clean preview card
+      const iframeSel = [
+        'iframe[src*="youtube.com"]',
+        'iframe[src*="youtube-nocookie.com"]'
+      ].join(',');
+      body.querySelectorAll(iframeSel).forEach(ifr => {
+        const id = ytIdFromUrl(ifr.src);
+        if (!id) return;
+        const watchUrl = 'https://www.youtube.com/watch?v=' + id;
+        ifr.replaceWith(makeThumbCard(id, watchUrl));
+      });
+
+      // 3) Make any remaining (non-YouTube) iframes responsive
+      body.querySelectorAll('iframe').forEach(el => {
+        if (!el.closest('.video-wrap')) {
+          const w = document.createElement('div');
+          w.className = 'video-wrap'; // styled in base.html
+          el.parentNode.insertBefore(w, el);
+          w.appendChild(el);
+        }
+      });
+    })();
+  </script>
+{% endblock content %}
