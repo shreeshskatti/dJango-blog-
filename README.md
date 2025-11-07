@@ -43,6 +43,24 @@ python manage.py migrate
 # 4️⃣ Start the development server
 python manage.py runserver
 
+## 🧰 Tech Stack
+
+| Category | Technology | Description |
+|-----------|-------------|-------------|
+| **Framework** | [Django 5.x](https://www.djangoproject.com/) | High-level Python web framework for rapid development |
+| **Frontend Styling** | [Tailwind CSS](https://tailwindcss.com/) | Utility-first CSS framework for a modern, responsive UI |
+| **Rich Text Editor** | [django-summernote](https://github.com/summernote/django-summernote) | Integrated WYSIWYG editor supporting YouTube & image embeds |
+| **Comments & Forms** | Django Forms | Secure, built-in form handling system with moderation logic |
+| **Database** | SQLite (Development) | Lightweight embedded database for local development |
+| **Backend Language** | Python 3.11+ | Core programming language powering Django |
+| **Deployment Ready** | Gunicorn / Nginx (optional) | Production-grade web server setup (future deployment ready) |
+| **Version Control** | Git & GitHub | Source code management and collaboration platform |
+
+---
+
+💡 *This project is built with a modern stack focused on speed, clarity, and maintainability.*  
+It’s lightweight enough for local projects yet scalable for deployment on **Render, Vercel, or AWS EC2**.
+
 
 mysite/
 │
