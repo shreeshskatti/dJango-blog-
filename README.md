@@ -16,62 +16,41 @@ A professional, dark-themed Django blog project featuring modern design, interac
 
 ---
 
-## ✨ Features
+)
+🧰 Tech Stack
+🖥️ Frontend
 
-- 🎨 **Tailwind Dark UI** with animated cards & smooth transitions  
-- 📝 **Summernote Rich Text Editor** (supports YouTube/Vimeo embeds)  
-- 💬 **Moderated Comments** system with approval workflow  
-- 🎬 **YouTube video preview fallback** (fixes Error 153 embed issue)  
-- 📄 **Pagination & responsive layouts**  
-- ⚙️ Built using Django Class-Based Views (ListView + DetailView)
+🎨 Tailwind CSS — sleek, modern, fully responsive dark UI
 
----
+💡 HTML5 + CSS3 — template rendering and structure
 
-## ⚡ Quickstart
+🌙 Custom animations using Tailwind utilities
 
-```bash
-# 1️⃣ Create & activate a virtual environment
-python -m venv venv
-source venv/Scripts/activate   # On Windows Git Bash
+⚙️ Backend
 
-# 2️⃣ Install dependencies
-pip install -r requirements.txt
+🧠 Django 5.x — routing, ORM, class-based views
 
-# 3️⃣ Run migrations
-python manage.py migrate
+🐍 Python 3.11+ — core programming language
 
-# 4️⃣ Start the development server
-python manage.py runserver
+💬 Django Forms — handles validated user comments and input
 
+🗄️ Database
 
----
+🪶 SQLite (development) — simple, file-based DB
 
-💡 *This project is built with a modern stack focused on speed, clarity, and maintainability.*  
-It’s lightweight enough for local projects yet scalable for deployment on **Render, Vercel, or AWS EC2**.
+🧱 Ready for PostgreSQL / MySQL in production
 
-## 🧰 Tech Stack
+📝 Rich Text Editor
 
-### 🖥️ Frontend
-- 🎨 **Tailwind CSS** — sleek, modern, fully responsive dark UI  
-- 💡 **HTML5 + CSS3** — template rendering and structure  
-- 🌙 **Custom animations** using Tailwind utilities  
+✍️ django-summernote — embeds videos, images, and formatted text
 
-### ⚙️ Backend
-- 🧠 **Django 5.x** — routing, ORM, class-based views  
-- 🐍 **Python 3.11+** — core language  
-- 💬 **Django Forms** — validated user comments and input  
+🧩 Tools & Workflow
 
-### 🗄️ Database
-- 🪶 **SQLite (development)** — simple, file-based DB  
-- 🧱 Ready for **PostgreSQL / MySQL** in production  
+🔑 Git & GitHub — version control and collaboration
 
-### 📝 Rich Text Editor
-- ✍️ **django-summernote** — embeds videos, images, and formatted text  
+🧱 Virtual Environment (venv) — dependency isolation
 
-### 🧩 Tools & Workflow
-- 🔑 **Git & GitHub** — version control and collaboration  
-- 🧱 **Virtual Environment (venv)** — dependency isolation  
-- 💻 **Git Bash** — professional CLI workflow on Windows  
+💻 Git Bash — professional CLI workflow on Windows
 
 mysite/
 │
