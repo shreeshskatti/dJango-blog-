@@ -43,24 +43,35 @@ python manage.py migrate
 # 4️⃣ Start the development server
 python manage.py runserver
 
-## 🧰 Tech Stack
-
-| Category | Technology | Description |
-|-----------|-------------|-------------|
-| **Framework** | [Django 5.x](https://www.djangoproject.com/) | High-level Python web framework for rapid development |
-| **Frontend Styling** | [Tailwind CSS](https://tailwindcss.com/) | Utility-first CSS framework for a modern, responsive UI |
-| **Rich Text Editor** | [django-summernote](https://github.com/summernote/django-summernote) | Integrated WYSIWYG editor supporting YouTube & image embeds |
-| **Comments & Forms** | Django Forms | Secure, built-in form handling system with moderation logic |
-| **Database** | SQLite (Development) | Lightweight embedded database for local development |
-| **Backend Language** | Python 3.11+ | Core programming language powering Django |
-| **Deployment Ready** | Gunicorn / Nginx (optional) | Production-grade web server setup (future deployment ready) |
-| **Version Control** | Git & GitHub | Source code management and collaboration platform |
 
 ---
 
 💡 *This project is built with a modern stack focused on speed, clarity, and maintainability.*  
 It’s lightweight enough for local projects yet scalable for deployment on **Render, Vercel, or AWS EC2**.
 
+## 🧰 Tech Stack
+
+### 🖥️ Frontend
+- 🎨 **Tailwind CSS** — sleek, modern, fully responsive dark UI  
+- 💡 **HTML5 + CSS3** — template rendering and structure  
+- 🌙 **Custom animations** using Tailwind utilities  
+
+### ⚙️ Backend
+- 🧠 **Django 5.x** — routing, ORM, class-based views  
+- 🐍 **Python 3.11+** — core language  
+- 💬 **Django Forms** — validated user comments and input  
+
+### 🗄️ Database
+- 🪶 **SQLite (development)** — simple, file-based DB  
+- 🧱 Ready for **PostgreSQL / MySQL** in production  
+
+### 📝 Rich Text Editor
+- ✍️ **django-summernote** — embeds videos, images, and formatted text  
+
+### 🧩 Tools & Workflow
+- 🔑 **Git & GitHub** — version control and collaboration  
+- 🧱 **Virtual Environment (venv)** — dependency isolation  
+- 💻 **Git Bash** — professional CLI workflow on Windows  
 
 mysite/
 │
